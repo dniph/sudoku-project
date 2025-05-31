@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+const defaultBase = '/LuluDoku/';
+const base = process.env.VITE_BASE || defaultBase;
+
 export default defineConfig({
   plugins: [react()],
-  base: '/LuluDoku/'
-})
+  base: base
+});
