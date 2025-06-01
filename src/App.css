@@ -145,3 +145,16 @@ h1 {
   margin-right: 0; /* Elimina margen extra en última celda */
   
 }
+
+.timer {
+  font-size: 1.5em;
+}
+
+.time-numbers {
+  font-family: 'Audiowide', cursive;
+  display: inline-block;
+  min-width: 100px; /* esto fija el ancho y evita que salte */
+  text-align: left;
+  font-size: 24px;
+  
+}

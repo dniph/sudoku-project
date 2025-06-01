@@ -62,10 +62,13 @@ function App() {
       <h1>LuluDoku</h1>
 
       {/* ⏱ Aquí agregamos el temporizador visual */}
-      <h2>Tiempo: {minutes}:{seconds}</h2>
+      <h2 className="timer">
+        <span style={{ marginRight: '5px' }}>Time:</span>
+        <span className="time-numbers" style={{ fontFamily: 'Audiowide' }}>{minutes}:{seconds}</span>
+        </h2>
 
       <h2>Lives: {lives}</h2>
-      {gameStatus === 'won' && <div className="win-message">¡Ganaste! 🎉</div>}
+      {gameStatus === 'won' && <div className="win-message">¡Yass Queen you WON! 🎉</div>}
       <Board
         board={board}
         setBoard={setBoard}

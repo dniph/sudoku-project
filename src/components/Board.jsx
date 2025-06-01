@@ -30,7 +30,7 @@ const Board = ({ board, setBoard, solution, lives, setLives, setGameStatus, onLo
       const newLives = lives - 1;
       setLives(newLives);
       if (newLives <= 0) {
-        alert('¡Perdiste! 😢 El juego se reiniciará.');
+        alert('Booo! Looser 😢 .');
         onLose();
       }
     }
