@@ -1,52 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Cell from './Cell';
 
-const Board = ({ board, setBoard, solution, lives, setLives, setGameStatus, onLose }) => {
-  // Cargar el audio una vez
-  const correctSound = useRef(new Audio('sounds/correct.wav'));
-
-  const handleCellChange = (row, col, value) => {
-    if (board[row][col].isInitial || board[row][col].isCorrect) return;
-
-    const correctValue = solution[row][col];
-    const isCorrect = value === correctValue;
-
-    const newBoard = board.map((r, i) =>
-      r.map((cell, j) =>
-        i === row && j === col
-          ? {
-              ...cell,
-              value,
-              isIncorrect: !isCorrect && value !== 0,
-              isCorrect: isCorrect && !cell.isInitial,
-            }
-          : cell
-      )
-    );
-
-    setBoard(newBoard);
-
-    if (!isCorrect && value !== 0) {
-      const newLives = lives - 1;
-      setLives(newLives);
-      if (newLives <= 0) {
-        alert('Booo! Looser 😢 .');
-        onLose();
-      }
-    }
-
-    if (isCorrect) {
-      correctSound.current.play();  // <-- Aquí suena cuando aciertas
-
-      const hasWon = newBoard.every(row =>
-        row.every(cell => cell.value !== 0 && !cell.isIncorrect)
-      );
-      if (hasWon) {
-        setGameStatus('won');
-      }
-    }
-  };
-
+const Board = ({
+  board,
+  highlightedHint,
+  handleCellChange,
+}) => {
   return (
     <div className="board">
       {board.map((row, rowIndex) => (
@@ -58,6 +17,10 @@ const Board = ({ board, setBoard, solution, lives, setLives, setGameStatus, onLo
               isInitial={cell.isInitial}
               isIncorrect={cell.isIncorrect}
               isCorrect={cell.isCorrect}
+              isHinting={
+                highlightedHint?.row === rowIndex &&
+                highlightedHint?.col === colIndex
+              }
               onChange={(value) => handleCellChange(rowIndex, colIndex, value)}
             />
           ))}

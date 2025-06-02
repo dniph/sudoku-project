@@ -38,8 +38,8 @@ const fillBoard = (board) => {
 const removeNumbers = (board, difficulty) => {
   const removalCounts = {
     easy: 35,
-    medium: 55,
-    hard: 65,
+    medium: 43,
+    hard: 50,
   };
 
   let attempts = removalCounts[difficulty] || 35;

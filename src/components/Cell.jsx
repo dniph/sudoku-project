@@ -1,4 +1,4 @@
-const Cell = ({ value, isInitial, isIncorrect, isCorrect, onChange }) => {
+const Cell = ({ value, isInitial, isIncorrect, isCorrect, onChange, isHinting }) => {
   const handleInputChange = (e) => {
     const val = parseInt(e.target.value, 10);
     if (isInitial || isCorrect) return;
@@ -12,7 +12,11 @@ const Cell = ({ value, isInitial, isIncorrect, isCorrect, onChange }) => {
 
   return (
     <input
-      className={`cell ${isInitial ? 'initial' : ''} ${isIncorrect ? 'incorrect' : ''} ${isCorrect ? 'correct' : ''}`}
+      className={`cell 
+        ${isInitial ? 'initial' : ''} 
+        ${isIncorrect ? 'incorrect' : ''} 
+        ${isCorrect ? 'correct' : ''} 
+        ${isHinting ? 'hint' : ''}`}
       type="text"
       value={value === 0 ? '' : value}
       disabled={isInitial || isCorrect}
