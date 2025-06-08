@@ -4,6 +4,7 @@ import Controls from './components/Controls';
 import { generateBoard } from './utils/sudokuGenerator';
 import './App.css';
 import Marquee from './components/marquee';
+import KoFiButton from './components/KoFiButton';
 
 function App() {
   const [board, setBoard] = useState([]);
@@ -177,6 +178,7 @@ function App() {
         />
 
         <Controls onNewGame={handleNewGame} />
+        <KoFiButton></KoFiButton>
       </div>
     </>
   );
