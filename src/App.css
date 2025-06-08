@@ -163,3 +163,32 @@ h1 {
   background-color: yellow !important;
   transition: background-color 0.5s ease;
 }
+
+
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  background: #fda4b0;
+  padding: 10px 0;
+  margin-top:1%;
+}
+
+.marquee-wrapper {
+  display: flex;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
+
+.marquee-text {
+  font-family: 'Audiowide', cursive;
+  font-size: 40px;
+  padding: 16px 32px;
+  white-space: nowrap;
+  color: red;
+}
+
+@keyframes marquee {
+    0%   { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+}

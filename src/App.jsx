@@ -3,6 +3,7 @@ import Board from './components/Board';
 import Controls from './components/Controls';
 import { generateBoard } from './utils/sudokuGenerator';
 import './App.css';
+import Marquee from './components/marquee';
 
 function App() {
   const [board, setBoard] = useState([]);
@@ -149,33 +150,35 @@ function App() {
   const seconds = String(elapsedTime % 60).padStart(2, '0');
 
   return (
-    <div className="app">
-      <h1>LuluDoku</h1>
+    <>
+      <Marquee></Marquee>
+      <div className="app">
+        <h1>LuluDoku</h1>
+        <h2 className="timer">
+          <span style={{ marginRight: '5px' }}>Time:</span>
+          <span className="time-numbers" style={{ fontFamily: 'Audiowide' }}>{minutes}:{seconds}</span>
+        </h2>
 
-      <h2 className="timer">
-        <span style={{ marginRight: '5px' }}>Time:</span>
-        <span className="time-numbers" style={{ fontFamily: 'Audiowide' }}>{minutes}:{seconds}</span>
-      </h2>
+        <h2>Lives: {lives}</h2>
+        {gameStatus === 'won' && <div className="win-message">¡Yass Queen you WON! 🎉</div>}
 
-      <h2>Lives: {lives}</h2>
-      {gameStatus === 'won' && <div className="win-message">¡Yass Queen you WON! 🎉</div>}
-
-      <h2 >Remaining Hints: {hintsLeft}</h2>
-      <div className='controls'>
-        <button onClick={handleHint} disabled={hintsLeft <= 0 || gameStatus !== 'playing'}>
-          Get hint
-          </button>
-      </div> 
+        <h2 >Remaining Hints: {hintsLeft}</h2>
+        <div className='controls'>
+          <button onClick={handleHint} disabled={hintsLeft <= 0 || gameStatus !== 'playing'}>
+            Get hint
+            </button>
+        </div> 
 
 
-      <Board
-        board={board}
-        highlightedHint={highlightedHint}
-        handleCellChange={handleCellChange}
-      />
+        <Board
+          board={board}
+          highlightedHint={highlightedHint}
+          handleCellChange={handleCellChange}
+        />
 
-      <Controls onNewGame={handleNewGame} />
-    </div>
+        <Controls onNewGame={handleNewGame} />
+      </div>
+    </>
   );
 }
 
